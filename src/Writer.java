@@ -46,6 +46,7 @@ class Table{
 		f.write('\t');
 		
 		f.write("Num");
+		
 		f.write('\n');
 	}
 	
@@ -60,7 +61,8 @@ class Table{
 			f.write('\t');
 		
 		for(int i : mas)
-			f.write(((Integer) i).toString() + ' ');
+			f.write(((Integer) i).toString()+" ");
+
 		
 		int N = 3;
 		if(mas.length == 3) N=2;
@@ -76,17 +78,15 @@ class Table{
 
 class MyStream extends FileOutputStream{
 
-	public MyStream(File file) throws FileNotFoundException {
-		super(file);
-	}
-	
-	void write(String s) throws IOException{
+	public MyStream(File file) throws FileNotFoundException {super(file);}
+	public void write(String s) throws IOException{
 		for(char i : s.toCharArray())
 			write(i);
 	}
 }
 
 public class Writer {
+	
 	public static void main(String arg[]) throws IOException{
 		File file = new File("out.prn");
 		MyStream f = new MyStream(file);
@@ -109,7 +109,7 @@ public class Writer {
 		for(int i = 0; i < sym.length; i++)
 			table.nextRow(sym[i], num[i], names[i]);
 		
-		
+		f.write("Sutula");
 		
 		Logo log = new Logo();
 		
