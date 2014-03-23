@@ -1,5 +1,7 @@
 import java.io.*;
 
+
+//=======================================================
 class Logo{
 	private byte [] canva = {(byte)27, (byte)'K', (byte)52, (byte)0};
 	private byte [] diagonal = {(byte) 129, (byte) 161, (byte) 145, (byte) 137, (byte) 133, (byte) 129};
@@ -26,6 +28,8 @@ class Logo{
 	}
 }
 
+
+//================================================
 class Table{
 	MyStream f;
 	
@@ -76,15 +80,29 @@ class Table{
 	}
 }
 
+//-=========================================
 class MyStream extends FileOutputStream{
-
+	
 	public MyStream(File file) throws FileNotFoundException {super(file);}
 	public void write(String s) throws IOException{
 		for(char i : s.toCharArray())
 			write(i);
 	}
+	
+	public void writeLine(char ch) throws IOException{
+		write((byte)27);
+		write((byte)ch);
+		write((byte) 105);
+		write((byte) 1);
+		for(int i = 0; i < 24*15; i++)
+			write((byte)240);
+		write((byte)20);
+		write('\n');
+	}
 }
 
+
+//================================
 public class Writer {
 	
 	public static void main(String arg[]) throws IOException{
@@ -106,10 +124,17 @@ public class Writer {
 				"Bold", "Cancel bold", "Sided printing", "Cancel double print", "Font \"elite\"", "Font \"peak\"",
 				"Print in the top half of the line", "Print in the lower row" , "Cancel at the top or bottom",
 				"Daily underscores", "Cancel daily underscores"};
+		
 		for(int i = 0; i < sym.length; i++)
 			table.nextRow(sym[i], num[i], names[i]);
 		
-		f.write("Sutula");
+		f.write("Sutula\n");
+		
+		f.writeLine('K');
+		f.writeLine('L');
+		f.writeLine('Y');
+		f.writeLine('Z');
+		
 		
 		Logo log = new Logo();
 		
