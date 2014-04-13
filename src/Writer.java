@@ -53,9 +53,11 @@ class Table{
 }
 
 //-=========================================
-class MyStream extends FileOutputStream{
+class MyStream extends BufferedWriter{
 	
-	public MyStream(File file) throws FileNotFoundException {super(file);}
+	public MyStream(File file) throws FileNotFoundException, UnsupportedEncodingException{
+			super(new OutputStreamWriter(new FileOutputStream(file), "cp1251"));
+		}
 	public void write(String s) throws IOException{
 		for(char i : s.toCharArray())
 			write(i);
@@ -109,7 +111,8 @@ public class Writer {
 		for(int i = 0; i < sym.length; i++)
 			table.nextRow(sym[i], num[i], names[i]);
 		
-		f.write("Bиконав: Cутула Oлександр Biталiйович - 12.04.2014 \n".toString());
+		
+		f.write("Bиконав: Cутула Oлександр Biталiйович - 12.04.2014 \n");
 		
 		f.writeLine('K');
 		f.writeLine('L');
@@ -219,13 +222,13 @@ public class Writer {
 	        if(i==3) {
 	        	f.write((byte)27);
 	        	f.write((byte)14);
-	        	f.write("Cутула Oлександр DA-22".toString());
+	        	f.write("Cутула Oлександр DA-22");
 	        }
 	        
 	        if(i==6){
 	        	f.write((byte)27);
 	        	f.write((byte)69);
-	        	f.write("Iнформацiя".toString());
+	        	f.write("Iнформацiя");
 	        }
 	        
 	        f.write((byte) '\n');

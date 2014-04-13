@@ -1,1 +1,1 @@
-start DOSPrinter.exe "%1" /rtf "out.prn" /CP1251
+start DOSPrinter.exe "%1" /rtf "out.prn" /cp1251
